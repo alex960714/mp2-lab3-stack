@@ -9,7 +9,7 @@ protected:
 	int Index;
 	T *mas;
 public:
-	T_Stack(int len = 10)
+	T_Stack(int len = 10)  //конструктор
 	{
 		if (len <= 0) 
 			throw len;
@@ -20,7 +20,7 @@ public:
 
 	virtual ~T_Stack() { delete[] mas; };
 
-	T_Stack(const T_Stack& s)
+	T_Stack(const T_Stack& s)  //конструктор копирования
 	{
 		MaxSize = s.MaxSize;
 		Index = s.Index;
@@ -29,7 +29,7 @@ public:
 			mas[i] = s.mas[i];
 	};
 
-	T_Stack& operator=(const T_Stack& s)
+	T_Stack& operator=(const T_Stack& s)  //оператор присваивания
 	{
 		if (MaxSize != s.MaxSize)
 		{
@@ -43,9 +43,9 @@ public:
 		return *this;
 	};
 
-	bool IsEmpty() {  return Index == -1; };
+	bool IsEmpty() {  return Index == -1; };  //проверка на пустоту стека
 
-	bool IsFull() { return Index == MaxSize - 1; }
+	bool IsFull() { return Index == MaxSize - 1; }  //проверка на заполненность стека
 
 	T Top()  //чтение без удаления
 	{

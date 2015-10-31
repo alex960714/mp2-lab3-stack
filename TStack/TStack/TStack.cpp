@@ -8,7 +8,7 @@
 #include <iostream>
 using namespace std;
 
-bool CheckParenthesis(char *str);
+bool CheckParenthesis(char *str);  //проверка правильности расстановки скобок
 
 
 int main()
