@@ -5,6 +5,7 @@
 #include <math.h>
 #include <locale.h>
 #include "T_Stack.h"
+#include "TParser.h"
 #include <iostream>
 using namespace std;
 
@@ -17,7 +18,12 @@ int main()
 	setlocale(LC_CTYPE, "Russian");
 	cout << "Введите арифметическое выражение:" << endl;
 	cin >> str;
-	cout << "Правильность расстановки скобок - " << CheckParenthesis(str) << endl;
+	TParser p(str);
+	if (CheckParenthesis(str))
+	{
+		p.inftopost();
+		cout << p.post << endl;
+	}
     return 0;
 }
 
