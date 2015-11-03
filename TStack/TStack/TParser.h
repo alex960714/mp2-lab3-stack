@@ -1,6 +1,8 @@
 #pragma once
 #include "T_Stack.h"
 #include <string.h>
+#include <iostream>
+using namespace std;
 
 const int MaxLen=201;
 
@@ -14,7 +16,7 @@ public:
 
 	
 public:
-	TParser(char *s=NULL):st_d(150), st_c(100)
+	TParser(char *s = NULL):st_d(150), st_c(100)  //конструктор
 	{
 			if (s==NULL)
 				inf[0]='\0';
@@ -27,90 +29,23 @@ public:
 	}
 	~TParser(void);
 
-	bool CheckParenthesis(char *str)
+	bool CheckParentheses();  //проверка правильности расстановки скобок
+	int Priority(char ch);  //расстановка приоритетов арифметических операций
+	bool IsOper(char ch);  //проверка, является ли символ оператором
+	bool IsNumber(char ch); //проверка, является ли символ числом
+	void inftopost();  //конвертация выражения из инфиксной формы в постфиксную
+
+	/*friend istream& operator>>(istream& is, TParser& p)  //???
 	{
-	T_Stack <char> s;
-	int i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '(')
-			s.Push('(');
-		if (str[i] == ')')
+		int i = 0;
+		char tmp;
+		is >> tmp;
+		while (tmp != '\0')
 		{
-			if (s.IsEmpty())
-				return false;
-			s.Pop();
+			p.inf[i++] = tmp;
+			is >> tmp;
 		}
-		i++;
-	}
-	return s.IsEmpty();
-    }
-
-	int Priority(char ch)
-	{
-		switch (ch)
-		{
-		case '(':
-		case ')': return 0;
-		case '+':
-		case '-': return 1;
-		case '*': 
-		case '/': return 2;
-		case '^': return 3;
-		default: return -1;
-		}
-	}
-
-	bool IsOper(char ch)
-	{
-		if ((ch=='+')||(ch=='-')||(ch=='*')||(ch=='/')||(ch=='^'))
-			return true;
-		return false;
-	}
-
-	bool IsNumber(char ch)
-	{
-		if ((ch>='0')&&(ch<='9'))
-			return true;
-		return false;
-	}
-
-	void inftopost()
-	{
-		int i=0,j=0;
-		st_c.Push('=');
-		while (inf[i]!='\0')
-		{
-			if (IsNumber(inf[i]))
-			{
-				post[j]=inf[i];
-				j++;
-			}
-			else if (inf[i]=='(')
-				st_c.Push(inf[i]);
-			else if (inf[i]=='\0')
-			{
-				char tmp=st_c.Pop();
-				while (tmp!='(')
-				{
-					post[j++]=tmp;
-					tmp=st_c.Pop();
-				}
-			}
-			else if (IsOper(inf[i]))
-			{
-				char tmp=st_c.Pop();
-				while (Priority(tmp)>=Priority(inf[i]))
-				{
-					post[j]=tmp;
-					j++;
-					tmp=st_c.Pop();
-				}
-				st_c.Push(tmp);
-				st_c.Push(inf[i]);
-			}
-			i++;
-		}
-	}
+		return is;
+	}*/
 };
 

@@ -9,25 +9,27 @@
 #include <iostream>
 using namespace std;
 
-bool CheckParenthesis(char *str);  //проверка правильности расстановки скобок
+bool CheckParentheses(char *str);  //проверка правильности расстановки скобок
 
 
 int main()
 {
+	//TParser p;
 	char str[100];
 	setlocale(LC_CTYPE, "Russian");
 	cout << "¬ведите арифметическое выражение:" << endl;
 	cin >> str;
 	TParser p(str);
-	if (CheckParenthesis(str))
-	{
+	/*if (p.CheckParentheses())
+	{*/
 		p.inftopost();
 		cout << p.post << endl;
-	}
+	/*}
+	else cout << "Ќеправильна€ расстановка скобок" << endl;*/
     return 0;
 }
 
-bool CheckParenthesis(char *str)
+bool CheckParentheses(char *str)
 {
 	T_Stack <char> s;
 	int i = 0;
