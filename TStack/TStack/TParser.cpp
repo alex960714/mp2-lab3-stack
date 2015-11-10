@@ -19,6 +19,20 @@ TParser::~TParser(void)
 {
 }
 
+double TParser::ExNumber(char *s, int &len)
+{
+	int i=0;
+	double tmp=atof(s);
+	while (s[i]!='\0')
+	{
+		if (IsNumber(s[i]))
+			i++;
+		else break;
+	}
+	len=i;
+	return tmp;
+}
+
 bool TParser::CheckParentheses()
 {
 	T_Stack <char> s;
@@ -63,7 +77,7 @@ bool TParser::IsOper(char ch)
 
 bool TParser::IsNumber(char ch)
 {
-	if ((ch >= '0') && (ch <= '9'))
+	if (((ch >= '0') && (ch <= '9'))||(ch == '.'))
 		return true;
 	return false;
 }
@@ -112,4 +126,150 @@ void TParser::inftopost()
 		post[j++] = tmp;
 		tmp = st_c.Pop();
 	}
+	post[j]='\0';
+	cout<<"Постфиксная форма выражения:"<<endl<<post<<endl;
+}
+
+double TParser::CalcPost()
+{
+	int i=0;
+	st_d.Clear();
+	while ((post[i]!='\0')&&(post[i]!='='))
+	{
+		if (IsNumber(post[i]))
+			st_d.Push(post[i]-'0');
+		if (IsOper(post[i]))
+		{
+			double op2=st_d.Pop();
+			double op1=st_d.Pop();
+			switch (post[i])
+			{
+			case '+': 
+				st_d.Push(op1+op2);
+				break;
+			case '-': 
+				st_d.Push(op1-op2);
+				break;
+			case '*':
+				st_d.Push(op1*op2);
+				break;
+			case '/':
+				if (op2==0)
+					throw op2;
+				st_d.Push(op1/op2);
+				break;
+			case '^':
+				st_d.Push(pow(op1,op2));
+			}
+		}
+		i++;
+	}
+	return st_d.Pop();
+}
+
+double TParser::Calc()
+{
+	st_d.Clear();
+	st_c.Clear();
+	int i=0, len;
+	st_c.Push('=');
+	while (inf[i]!='\0')
+	{
+		if (IsNumber(inf[i]))
+		{
+			double tmp = ExNumber(&inf[i],len);
+			st_d.Push(tmp);
+			i+=len-1;
+		}
+		else if (inf[i]=='(')
+			st_c.Push('(');
+		else if (inf[i]==')')
+		{
+			char tmp=st_c.Pop();
+			while (tmp!='(')
+			{
+				double op2=st_d.Pop();
+			    double op1=st_d.Pop();
+			    switch (tmp)
+			    {
+			    case '+': 
+				    st_d.Push(op1+op2);
+				    break;
+			    case '-': 
+				    st_d.Push(op1-op2);
+				    break;
+			    case '*':
+				    st_d.Push(op1*op2);
+				    break;
+			    case '/':
+				    if (op2==0)
+					    throw op2;
+				    st_d.Push(op1/op2);
+				    break;
+			    case '^':
+				    st_d.Push(pow(op1,op2));
+			    }
+				tmp=st_c.Pop();
+			}
+		}
+		else if (IsOper(inf[i]))
+		{
+			char tmp=st_c.Pop();
+			while (Priority(tmp)>=Priority(inf[i]))
+			{
+				double op2=st_d.Pop();
+			    double op1=st_d.Pop();
+			    switch (tmp)
+			    {
+			    case '+': 
+				    st_d.Push(op1+op2);
+				    break;
+			    case '-': 
+				    st_d.Push(op1-op2);
+				    break;
+			    case '*':
+				    st_d.Push(op1*op2);
+				    break;
+			    case '/':
+				    if (op2==0)
+					    throw op2;
+				    st_d.Push(op1/op2);
+				    break;
+			    case '^':
+				    st_d.Push(pow(op1,op2));
+			    }
+				tmp=st_c.Pop();
+			}
+			st_c.Push(tmp);
+			st_c.Push(inf[i]);
+		}
+		i++;
+	}
+	char tmp=st_c.Pop();
+	while (tmp!='=')
+	{
+		double op2=st_d.Pop();
+		double op1=st_d.Pop();
+		switch (tmp)
+		{
+		case '+': 
+			st_d.Push(op1+op2);
+			break;
+		case '-': 
+			st_d.Push(op1-op2);
+			break;
+		case '*':
+			st_d.Push(op1*op2);
+			break;
+		case '/':
+			if (op2==0)
+				throw op2;
+			st_d.Push(op1/op2);
+			break;
+		case '^':
+			st_d.Push(pow(op1,op2));
+		}
+		tmp=st_c.Pop();
+	}
+	return st_d.Pop();
 }

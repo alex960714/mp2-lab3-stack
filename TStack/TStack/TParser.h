@@ -8,13 +8,14 @@ const int MaxLen=201;
 
 class TParser
 {
-public:
+private:
 	char inf[MaxLen];
 	char post[MaxLen];
 	T_Stack <double> st_d;
 	T_Stack <char> st_c;
 
-	
+	double ExNumber(char *s, int &len);  //считывание вещественного числа из строки
+
 public:
 	TParser(char *s = NULL):st_d(150), st_c(100)  //конструктор
 	{
@@ -25,6 +26,7 @@ public:
 				int i=0;
 				while (s[i]!='\0')
 					inf[i]=s[i++];
+				inf[i]='\0';
 			}
 	}
 	~TParser(void);
@@ -34,6 +36,8 @@ public:
 	bool IsOper(char ch);  //проверка, является ли символ оператором
 	bool IsNumber(char ch); //проверка, является ли символ числом
 	void inftopost();  //конвертация выражения из инфиксной формы в постфиксную
+	double CalcPost();  //вычисление выражения, записанного в постфиксной форме
+	double Calc();  //вычисление выражения, записанного в инфиксной форме
 
 	/*friend istream& operator>>(istream& is, TParser& p)  //???
 	{

@@ -20,12 +20,10 @@ int main()
 	cout << "Введите арифметическое выражение:" << endl;
 	cin >> str;
 	TParser p(str);
-	/*if (p.CheckParentheses())
-	{*/
-		p.inftopost();
-		cout << p.post << endl;
-	/*}
-	else cout << "Неправильная расстановка скобок" << endl;*/
+	//p.inftopost();
+	//cout<<"Постфиксная форма выражения:"<<endl<<p.post<<endl;
+	//cout<<"Результат выражения (постфиксная форма) = "<<p.CalcPost()<<endl;
+	cout<<"Результат выражения (инфиксная форма) = "<<p.Calc()<<endl;
     return 0;
 }
 
