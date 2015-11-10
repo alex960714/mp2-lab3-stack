@@ -67,5 +67,10 @@ public:
 			throw Index;
 		mas[++Index] = n;
 	}
+
+	void Clear()  //очистка стека
+	{
+		Index = -1;
+	}
 };
 
