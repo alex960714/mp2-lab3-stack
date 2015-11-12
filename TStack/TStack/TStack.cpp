@@ -9,8 +9,6 @@
 #include <iostream>
 using namespace std;
 
-bool CheckParentheses(char *str);  //проверка правильности расстановки скобок
-
 
 int main()
 {
@@ -20,28 +18,20 @@ int main()
 	cout << "Введите арифметическое выражение:" << endl;
 	cin >> str;
 	TParser p(str);
-	//p.inftopost();
-	//cout<<"Постфиксная форма выражения:"<<endl<<p.post<<endl;
-	//cout<<"Результат выражения (постфиксная форма) = "<<p.CalcPost()<<endl;
-	cout<<"Результат выражения (инфиксная форма) = "<<p.Calc()<<endl;
-    return 0;
-}
-
-bool CheckParentheses(char *str)
-{
-	T_Stack <char> s;
-	int i = 0;
-	while (str[i] != '\0')
+	int op;
+	cout << "Введите номер операции:" << endl;
+	cout << "1. Вычисление в постфиксной и инфиксной форме;" << endl << "2. Вычисление только в инфиксной форме." << endl;
+	do
 	{
-		if (str[i] == '(')
-			s.Push('(');
-		if (str[i] == ')')
+		cin >> op;
+		switch (op)
 		{
-			if (s.IsEmpty())
-				return false;
-			s.Pop();
+		case 1: p.inftopost();
+			cout << "Результат выражения (постфиксная форма) = " << p.CalcPost() << endl;
+		case 2: cout << "Результат выражения (инфиксная форма) = " << p.Calc() << endl;
+			break;
+		default: cout << "Некорректный ввод операции. Введите номер операции ещё раз:" << endl;
 		}
-		i++;
-	}
-	return s.IsEmpty();
+	} while ((op != 1) && (op != 2));
+    return 0;
 }
