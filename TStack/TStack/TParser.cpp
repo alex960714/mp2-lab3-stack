@@ -172,6 +172,7 @@ double TParser::Calc()
 	st_d.Clear();
 	st_c.Clear();
 	int i=0, len;
+	bool fl_x = false;
 	st_c.Push('=');
 	while (inf[i]!='\0')
 	{
@@ -243,10 +244,20 @@ double TParser::Calc()
 			st_c.Push(tmp);
 			st_c.Push(inf[i]);
 		}
+		else if (inf[i]=='x')
+		{
+			fl_x = true;
+			break;
+		}
 		i++;
 	}
+	if (fl_x)
+	{
+		func();
+		return INFINITY;
+	}
 	char tmp=st_c.Pop();
-	while (tmp!='=')
+	while (tmp != '=')
 	{
 		double op2=st_d.Pop();
 		double op1=st_d.Pop();
@@ -272,4 +283,15 @@ double TParser::Calc()
 		tmp=st_c.Pop();
 	}
 	return st_d.Pop();
+}
+
+void TParser::func()
+{
+	double a, b;
+	double c;
+	cout << "В выражении присутствует неизвестное x. Введите отрезок интересуемых значений x и шаг функкции:" << endl;
+	cin >> a >> b >> c;
+	T_Stack <double> sd(st_d);
+	T_Stack <char> sc(st_c);
+
 }
