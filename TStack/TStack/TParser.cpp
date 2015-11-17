@@ -167,12 +167,12 @@ double TParser::CalcPost()
 	return st_d.Pop();
 }
 
-double TParser::Calc()
+double TParser::Calc(const double a)
 {
 	st_d.Clear();
 	st_c.Clear();
 	int i=0, len;
-	bool fl_x = false;
+	//bool fl_x = false;
 	st_c.Push('=');
 	while (inf[i]!='\0')
 	{
@@ -246,16 +246,17 @@ double TParser::Calc()
 		}
 		else if (inf[i]=='x')
 		{
-			fl_x = true;
-			break;
+			/*fl_x = true;
+			break;*/
+			st_d.Push(a);
 		}
 		i++;
 	}
-	if (fl_x)
+	/*if (fl_x)
 	{
 		func();
 		return INFINITY;
-	}
+	}*/
 	char tmp=st_c.Pop();
 	while (tmp != '=')
 	{
@@ -289,9 +290,19 @@ void TParser::func()
 {
 	double a, b;
 	double c;
-	cout << "В выражении присутствует неизвестное x. Введите отрезок интересуемых значений x и шаг функкции:" << endl;
+	cout << "Введите отрезок интересуемых значений x и шаг функции:" << endl;
 	cin >> a >> b >> c;
-	T_Stack <double> sd(st_d);
-	T_Stack <char> sc(st_c);
-
+	double x = a;
+	cout << "Таблица значений функций:" << endl << "x   f(x)" << endl;
+	while (x < b)
+	{
+		TParser ps(inf);
+		cout << x << "  " << ps.Calc(x) << endl;
+		x = x + c;
+		if (x >= b)
+		{
+			cout << b << "  " << ps.Calc(x) << endl;
+			x = x + c;
+		}
+	}
 }
