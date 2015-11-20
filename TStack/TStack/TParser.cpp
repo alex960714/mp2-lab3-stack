@@ -194,13 +194,21 @@ double TParser::Calc()
 			{
 				double op2=st_d.Pop();
 			    double op1=st_d.Pop();
+				char tmp2;
 			    switch (tmp)
 			    {
 			    case '+': 
 				    st_d.Push(op1+op2);
 				    break;
 			    case '-': 
-				    st_d.Push(op1-op2);
+					tmp2 = st_c.Pop();
+					if (st_c.Top() == '(')
+					{
+						st_d.Push(op1);
+						st_d.Push(-op2);
+					}
+				    else st_d.Push(op1-op2);
+					st_c.Push(tmp2);
 				    break;
 			    case '*':
 				    st_d.Push(op1*op2);
@@ -242,7 +250,12 @@ double TParser::Calc()
 				    st_d.Push(op1+op2);
 				    break;
 			    case '-': 
-				    st_d.Push(op1-op2);
+					if (st_c.Top() == '=')
+					{
+						st_d.Push(op1);
+						st_d.Push(-op2);
+					}
+				    else st_d.Push(op1-op2);
 				    break;
 			    case '*':
 				    st_d.Push(op1*op2);
