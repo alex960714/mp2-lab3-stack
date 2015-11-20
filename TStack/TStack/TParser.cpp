@@ -56,6 +56,9 @@ int TParser::Priority(char ch)
 {
 	switch (ch)
 	{
+	case 's':
+	case 'c':
+	case 'l':
 	case '(':
 	case ')': return 0;
 	case '+':
@@ -172,6 +175,7 @@ double TParser::Calc()
 	st_d.Clear();
 	st_c.Clear();
 	int i=0, len;
+	st_d.Push(0);
 	st_c.Push('=');
 	while (inf[i]!='\0')
 	{
@@ -208,6 +212,19 @@ double TParser::Calc()
 				    break;
 			    case '^':
 				    st_d.Push(pow(op1,op2));
+					break;
+				case 's':
+					st_d.Push(op1);
+					st_d.Push(sin(op2));
+					break;
+				case 'c':
+					st_d.Push(op1);
+					st_d.Push(cos(op2));
+					break;
+				case 'l':
+					st_d.Push(op1);
+					st_d.Push(log(op2));
+					break;
 			    }
 				tmp=st_c.Pop();
 			}
@@ -237,11 +254,30 @@ double TParser::Calc()
 				    break;
 			    case '^':
 				    st_d.Push(pow(op1,op2));
+					break;
 			    }
 				tmp=st_c.Pop();
 			}
 			st_c.Push(tmp);
 			st_c.Push(inf[i]);
+		}
+		else if (inf[i] == 's')
+		{
+			st_c.Push('(');
+			st_c.Push('s');
+			i += 3;
+		}
+		else if (inf[i] == 'c')
+		{
+			st_c.Push('(');
+			st_c.Push('c');
+			i += 3;
+		}
+		else if (inf[i] == 'l')
+		{
+			st_c.Push('(');
+			st_c.Push('l');
+			i += 2;
 		}
 		i++;
 	}
