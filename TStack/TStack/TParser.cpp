@@ -290,10 +290,10 @@ void TParser::func()
 {
 	double a, b;
 	double c;
-	cout << "Введите отрезок интересуемых значений x и шаг функции:" << endl;
+	cout << "Введите границы отрезка интересуемых значений x и шаг аргумента функции:" << endl;
 	cin >> a >> b >> c;
 	double x = a;
-	cout << "Таблица значений функций:" << endl << "x   f(x)" << endl;
+	cout << "Таблица значений функции:" << endl << "x   f(x)" << endl;
 	while (x < b)
 	{
 		TParser ps(inf);
@@ -301,7 +301,7 @@ void TParser::func()
 		x = x + c;
 		if (x >= b)
 		{
-			cout << b << "  " << ps.Calc(x) << endl;
+			cout << b << "  " << ps.Calc(b) << endl;
 			x = x + c;
 		}
 	}
