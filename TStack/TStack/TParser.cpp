@@ -170,7 +170,7 @@ double TParser::CalcPost()
 	return st_d.Pop();
 }
 
-double TParser::Calc()
+double TParser::Calc(const double a)
 {
 	st_d.Clear();
 	st_c.Clear();
@@ -292,10 +292,14 @@ double TParser::Calc()
 			st_c.Push('l');
 			i += 2;
 		}
+		else if (inf[i]=='x')
+		{
+			st_d.Push(a);
+		}
 		i++;
 	}
 	char tmp=st_c.Pop();
-	while (tmp!='=')
+	while (tmp != '=')
 	{
 		double op2=st_d.Pop();
 		double op1=st_d.Pop();
@@ -321,4 +325,25 @@ double TParser::Calc()
 		tmp=st_c.Pop();
 	}
 	return st_d.Pop();
+}
+
+void TParser::func()
+{
+	double a, b;
+	double c;
+	cout << "Введите границы отрезка интересуемых значений x и шаг аргумента функции:" << endl;
+	cin >> a >> b >> c;
+	double x = a;
+	cout << "Таблица значений функции:" << endl << "x   f(x)" << endl;
+	while (x < b)
+	{
+		TParser ps(inf);
+		cout << x << "  " << ps.Calc(x) << endl;
+		x = x + c;
+		if (x >= b)
+		{
+			cout << b << "  " << ps.Calc(b) << endl;
+			x = x + c;
+		}
+	}
 }
