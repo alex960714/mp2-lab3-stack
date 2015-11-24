@@ -172,6 +172,8 @@ double TParser::CalcPost()
 
 double TParser::Calc(const double a)
 {
+	if (!CheckParentheses())
+		throw "Irregular placement of parentheses";
 	st_d.Clear();
 	st_c.Clear();
 	int i=0, len;
