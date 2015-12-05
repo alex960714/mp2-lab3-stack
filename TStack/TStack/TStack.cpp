@@ -12,7 +12,6 @@ using namespace std;
 
 int main()
 {
-	//TParser p;
 	char str[100];
 	int op;
 	setlocale(LC_CTYPE, "Russian");

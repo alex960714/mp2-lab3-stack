@@ -29,7 +29,7 @@ public:
 				inf[i]='\0';
 			}
 	}
-	~TParser(void);
+	virtual ~TParser(void);
 
 	bool CheckParentheses();  //проверка правильности расстановки скобок
 	int Priority(char ch);  //расстановка приоритетов арифметических операций
@@ -39,18 +39,5 @@ public:
 	double CalcPost();  //вычисление выражения, записанного в постфиксной форме
 	double Calc(const double a = 0);  //вычисление выражения, записанного в инфиксной форме
 	void func(); //вычисление выражения с неизвестным
-
-	/*friend istream& operator>>(istream& is, TParser& p)  //???
-	{
-		int i = 0;
-		char tmp;
-		is >> tmp;
-		while (tmp != '\0')
-		{
-			p.inf[i++] = tmp;
-			is >> tmp;
-		}
-		return is;
-	}*/
 };
 

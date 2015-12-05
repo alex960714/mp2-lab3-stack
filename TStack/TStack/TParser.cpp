@@ -2,18 +2,6 @@
 #include "TParser.h"
 
 
-/*TParser::TParser(char *s = NULL): st_d(150), st_c(100)
-{
-	if (s == NULL)
-		inf[0] = '\0';
-	else
-	{
-		int i = 0;
-		while (s[i] != '\0')
-			inf[i] = s[i++];
-	}
-}*/
-
 
 TParser::~TParser(void)
 {
