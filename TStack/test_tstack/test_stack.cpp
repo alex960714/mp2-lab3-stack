@@ -20,7 +20,17 @@ TEST(T_Stack, can_create_stack_with_default_size)
 TEST(T_Stack, can_copy_stack)
 {
 	T_Stack <int> s1(10);
+
 	ASSERT_NO_THROW(T_Stack <int> s(s1));
+}
+
+TEST(T_Stack, correct_copying_stack)
+{
+	T_Stack <int> s1(10);
+	s1.Push(4);
+	T_Stack <int> s(s1);
+
+	EXPECT_EQ(s.Pop(), s1.Pop());
 }
 
 TEST(T_Stack, copied_stack_has_its_own_memory)

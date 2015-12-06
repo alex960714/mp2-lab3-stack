@@ -3,10 +3,6 @@
 
 
 
-TParser::~TParser(void)
-{
-}
-
 double TParser::ExNumber(char *s, int &len)
 {
 	int i=0;

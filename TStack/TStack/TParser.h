@@ -29,7 +29,7 @@ public:
 				inf[i]='\0';
 			}
 	}
-	virtual ~TParser(void);
+	virtual ~TParser(void) {};
 
 	bool CheckParentheses();  //проверка правильности расстановки скобок
 	int Priority(char ch);  //расстановка приоритетов арифметических операций
