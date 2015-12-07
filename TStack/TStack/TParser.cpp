@@ -2,6 +2,19 @@
 #include "TParser.h"
 
 
+TParser::TParser(char *s) :st_d(150), st_c(100)  //конструктор
+{
+	if (s == NULL)
+		inf[0] = '\0';
+	else
+	{
+		int i = 0;
+		while (s[i] != '\0')
+			inf[i] = s[i++];
+		inf[i] = '\0';
+	}
+}
+TParser::~TParser(void) {}
 
 double TParser::ExNumber(char *s, int &len)
 {

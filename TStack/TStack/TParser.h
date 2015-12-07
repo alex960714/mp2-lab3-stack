@@ -1,4 +1,6 @@
 #pragma once
+#ifndef __PARSER_H__
+#define __PARSER_H__
 #include "T_Stack.h"
 #include <string.h>
 #include <iostream>
@@ -17,8 +19,8 @@ private:
 	double ExNumber(char *s, int &len);  //считывание вещественного числа из строки
 
 public:
-	TParser(char *s = NULL):st_d(150), st_c(100)  //конструктор
-	{
+	TParser(char *s = NULL) ;  //конструктор
+	/*{
 			if (s==NULL)
 				inf[0]='\0';
 			else 
@@ -28,8 +30,8 @@ public:
 					inf[i]=s[i++];
 				inf[i]='\0';
 			}
-	}
-	virtual ~TParser(void) {};
+	}*/
+	virtual ~TParser(void) /*{}*/;
 
 	bool CheckParentheses();  //проверка правильности расстановки скобок
 	int Priority(char ch);  //расстановка приоритетов арифметических операций
@@ -41,3 +43,4 @@ public:
 	void func(); //вычисление выражения с неизвестным
 };
 
+#endif
