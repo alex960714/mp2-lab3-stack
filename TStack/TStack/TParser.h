@@ -1,6 +1,6 @@
-#pragma once
-#ifndef __PARSER_H__
-#define __PARSER_H__
+//#pragma once
+#ifndef __TPARSER_H__
+#define __TPARSER_H__
 #include "T_Stack.h"
 #include <string.h>
 #include <iostream>
