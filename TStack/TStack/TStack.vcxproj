@@ -147,7 +147,6 @@
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TParser.h" />
     <ClInclude Include="T_Stack.h" />
   </ItemGroup>
   <ItemGroup>
@@ -157,9 +156,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TParser.cpp" />
     <ClCompile Include="TStack.cpp" />
     <ClCompile Include="T_Stack.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\T_Parser\T_Parser.vcxproj">
+      <Project>{d4db42cf-bed0-4432-8cc4-1e0a55cc3930}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
