@@ -22,18 +22,7 @@ protected:
 
 public:
 	TParser(char *s = NULL) ;  //конструктор
-	/*{
-			if (s==NULL)
-				inf[0]='\0';
-			else 
-			{
-				int i=0;
-				while (s[i]!='\0')
-					inf[i]=s[i++];
-				inf[i]='\0';
-			}
-	}*/
-	virtual ~TParser(void) /*{}*/;
+	virtual ~TParser(void);
 
 	bool CheckParentheses();  //проверка правильности расстановки скобок
 	bool IsOper(char ch);  //проверка, является ли символ оператором
