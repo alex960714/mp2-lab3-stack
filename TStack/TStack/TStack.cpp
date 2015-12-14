@@ -5,7 +5,7 @@
 #include <math.h>
 #include <locale.h>
 #include "T_Stack.h"
-#include "TParser.h"
+#include <TParser.h>
 #include <iostream>
 using namespace std;
 
@@ -30,7 +30,11 @@ int main()
 			cout << "Результат выражения (постфиксная форма) = " << p.CalcPost() << endl;
 		case 2: cout << "Результат выражения (инфиксная форма) = " << p.Calc() << endl;
 			break;
-		case 3: p.func();
+		case 3: double a, b;
+			double c;
+			cout << "Введите границы отрезка интересуемых значений x и шаг аргумента функции:" << endl;
+			cin >> a >> b >> c;
+			p.func(a,b,c);
 		case 4: break;
 		default: cout << "Некорректный ввод операции. Введите номер операции ещё раз:" << endl;
 		}

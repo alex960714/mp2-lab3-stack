@@ -1,7 +1,7 @@
 //#pragma once
 #ifndef __TPARSER_H__
 #define __TPARSER_H__
-#include <T_Stack.h>
+#include "T_Stack.h"
 #include <string.h>
 #include <iostream>
 using namespace std;
@@ -30,7 +30,7 @@ public:
 	void inftopost();  //конвертация выражения из инфиксной формы в постфиксную
 	double CalcPost();  //вычисление выражения, записанного в постфиксной форме
 	double Calc(const double a = 0);  //вычисление выражения, записанного в инфиксной форме
-	void func(); //вычисление выражения с неизвестным
+	void func(const double a, const double b, const double c); //вычисление выражения с неизвестным
 };
 
 #endif

@@ -72,6 +72,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Users\User\Documents\GitHub\mp2-lab3-stack\TStack\TStack;$(IncludePath)</IncludePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Александр\Documents\GitHub\mp2-lab3-stack\TStack\TStack;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -145,6 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TStack\TStack.vcxproj">
+      <Project>{06dbc6ad-a277-4ec6-a35e-b38010a3650b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

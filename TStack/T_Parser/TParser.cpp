@@ -327,12 +327,12 @@ double TParser::Calc(const double a)
 	return st_d.Pop();
 }
 
-void TParser::func()
+void TParser::func(const double a, const double b, const double c)
 {
-	double a, b;
+	/*double a, b;
 	double c;
 	cout << "Введите границы отрезка интересуемых значений x и шаг аргумента функции:" << endl;
-	cin >> a >> b >> c;
+	cin >> a >> b >> c;*/
 	double x = a;
 	cout << "Таблица значений функции:" << endl << "x   f(x)" << endl;
 	while (x < b)
